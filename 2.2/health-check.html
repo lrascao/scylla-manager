@@ -1,0 +1,365 @@
+
+
+
+<!doctype html>
+<html class="no-js" lang="en">
+  
+<head><!-- begin head.html -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>
+    Health Check | Scylla Docs
+    </title>
+    <meta name="description" content="Scylla is an Apache Cassandra-compatible NoSQL data store that can handle 1 million transactions per second on a single server."/>
+
+    <link rel="icon" href="_static/img/favicon.ico" type="image/x-icon"/>
+    <link rel="canonical" href="https://docs.scylladb.com/">
+
+    <link rel="author" href="mailto:info@scylladb.com">
+    <link rel="stylesheet" href="_static/" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_tabs/semantic-ui-2.4.1/segment.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_tabs/semantic-ui-2.4.1/menu.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_tabs/tabs.css" />
+    
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/doc/main.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+
+    <script src="_static/js/vendor/modernizr.js"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T8P2JP');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Marketo -->
+    <script type="text/javascript"> (function() { var didInit = false; function initMunchkin() { if(didInit === false) { didInit = true; Munchkin.init('791-QBF-350'); } } var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//munchkin.marketo.net/munchkin.js'; s.onreadystatechange = function() { if (this.readyState == 'complete' || this.readyState == 'loaded') { initMunchkin(); } }; s.onload = initMunchkin; document.getElementsByTagName('head')[0].appendChild(s); })(); </script>
+    <!-- End Marketo -->
+
+<!-- end head.html -->
+</head>
+
+<body>
+
+
+    <section class="custom-promo-banner-wrap">
+    <div class="custom-promo-banner--relative">
+        <div class="custom-promo-banner--img-left">
+            <img src="_static/img/Scylla-Summit-Banner-globs-left.svg">
+        </div>
+        <div class="custom-promo-banner--img-center">
+            <img src="_static/img/Scylla-Summit-Banner-globs-middle.svg">
+        </div>
+        <div class="custom-promo-banner--img-right">
+            <img src="_static/img/Scylla-Summit-Banner-globs-right.svg">
+        </div>
+
+        <div class="custom-promo-banner">
+            <img class="custom-promo-banner--logo" src="_static/img/slide-summit21-logo@2x.png" alt="">
+            <div class="custom-promo-banner--title summit">Database Monsters of the World Connect! Virtual Conference | January 12-14</div>
+            <a class="custom-promo-banner--button summit" href="https://scylladb.com/scylla-summit-2021/">Register Now <i class="fa fa-angle-right" style="margin-left: 10px;" aria-hidden="true"></i></a><button class="custom-promo-banner--close">×</button>
+        </div>
+    </div>
+</section>
+
+
+
+<header id="header" class="animated">
+    <div class="topbar_continer contain-to-grid clearfix">
+        <nav class="top-bar" id="top-bar" data-topbar role="navigation">
+            <ul class="title-area">
+                <li class="name">
+                    <div class="logo">
+                        <a href="https://docs.scylladb.com/"><img src="_static/img/logo-scylla-docs.svg" alt="" width="151"></a>
+                    </div>
+                </li>
+                <li class="toggle-topbar"><a href="#"><span class="icon-manu"></span></a></li>
+            </ul>
+            <section class="top-bar-section clearfix">
+                <ul class="right">
+                    
+                    <li>
+                        <a href="https://scylladb.github.io/scylla-manager/">Scylla Manager</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://scylladb.github.io/scylla-monitoring/">Scylla Monitor</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://docs.scylladb.com/scylla-cloud/">Scylla Cloud</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://university.scylladb.com/">Scylla University</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://www.scylladb.com/">ScyllaDB Home</a>
+                    </li>
+                    
+                    <li class="search_continer show-for-medium-up">	
+                        <ci-search></ci-search>	
+                    </li>	
+                </ul>
+            </section>
+        </nav>
+    </div>
+</header>
+<section id="content">
+    <div class="row">
+	
+	<div class="large-6 large-push-3 columns">
+
+        
+
+        <div class="section" id="health-check">
+<h1>Health Check<a class="headerlink" href="#health-check" title="Permalink to this headline">¶</a></h1>
+<p>Scylla Manager automatically adds three health check tasks when the cluster is added to the Scylla Manager and to existing clusters
+during the upgrade procedure. You can see the tasks created by the healthcheck when you run
+the <a class="reference internal" href="sctool/task.html#task-list"><span class="std std-ref">sctool task list</span></a> command.</p>
+<p>For example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sctool task list -c prod-cluster
+</pre></div>
+</div>
+<p>returns:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sctool task list -c prod-cluster
+╭─────────────────────────────────────────────────────────────┬───────────┬────────────────────────────────┬────────╮
+│ Task                                                        │ Arguments │ Next run                       │ Status │
+├─────────────────────────────────────────────────────────────┼───────────┼────────────────────────────────┼────────┤
+│ healthcheck/8988932e-de2f-4c42-a2f8-ae3b97fd7126            │           │ 02 Apr 20 12:28:10 CEST (+15s) │ NEW    │
+| healthcheck_alternator/79170f1f-8bda-481e-8538-c3ff9894d235 │           │ 02 Apr 20 12:28:10 CEST (+15s) │ NEW    │
+│ healthcheck_rest/9b7e694d-a1e3-42f1-8ca6-d3dfd9f0d94f       │           │ 02 Apr 20 12:28:40 CEST (+1h)  │ NEW    │
+│ repair/0fd8a43b-eacf-4df8-9376-2a31b0dee6cc                 │           │ 03 Apr 20 00:00:00 CEST (+7d)  │ NEW    │
+╰─────────────────────────────────────────────────────────────┴───────────┴────────────────────────────────┴────────╯
+</pre></div>
+</div>
+<p>We can see three healthcheck related tasks:</p>
+<ul class="simple">
+<li><p>Healthcheck - which checks the Scylla CQL, repeating every 15 seconds.</p></li>
+<li><p>Healthcheck Alternator - which checks the Scylla Alternator API, repeating every 15 seconds.</p></li>
+<li><p>Healthcheck REST - which checks the Scylla REST API, repeating every minute.</p></li>
+</ul>
+<div class="section" id="scylla-health-check">
+<span id="id1"></span><h2>Scylla Health Check<a class="headerlink" href="#scylla-health-check" title="Permalink to this headline">¶</a></h2>
+<p>The Scylla health check task ensures that CQL native port is accessible on all the nodes. For each node, in parallel,
+Scylla Manager opens a connection to a CQL port and asks for server options.
+If there is no response or the response takes longer than configured value (as recorded in the Scylla Manager <a class="reference internal" href="config/scylla-manager-config.html#configuration-file"><span class="std std-ref">Scylla Manager Config</span></a> the node is considered to be DOWN otherwise the node is considered to be UP.
+The results are available using the <a class="reference internal" href="sctool/status.html#id1"><span class="std std-ref">sctool status</span></a> command.</p>
+<p>For example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sctool status -c prod-cluster
+</pre></div>
+</div>
+<p>returns:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sctool status -c prod-cluster
+Datacenter: eu-west
+╭────┬────────────┬───────────┬───────────┬───────────────┬──────────┬──────┬──────────┬────────┬──────────┬──────────────────────────────────────╮
+│    │ Alternator │ CQL       │ REST      │ Address       │ Uptime   │ CPUs │ Memory   │ Scylla │ Agent    │ Host ID                              │
+├────┼────────────┼───────────┼───────────┼───────────────┼──────────┼──────┼──────────┼────────┼──────────┼──────────────────────────────────────┤
+│ UN │ UP (4ms)   │ UP (3ms)  │ UP (2ms)  │ 34.203.122.52 │ 237h2m1s │ 4    │ 15.43GiB │ 4.1.0  │ 2.2.0    │ 8bfd18f1-ac3b-4694-bcba-30bc272554df │
+│ UN │ UP (15ms)  │ UP (11ms) │ UP (12ms) │ 10.0.138.46   │ 237h2m1s │ 4    │ 15.43GiB │ 4.1.0  │ 2.2.0    │ 238acd01-813c-4c55-bd65-5219bb19bc20 │
+│ UN │ UP (17ms)  │ UP (5ms)  │ UP (7ms)  │ 10.0.196.204  │ 237h2m1s │ 4    │ 15.43GiB │ 4.1.0  │ 2.2.0    │ bde4581a-b25e-49fc-8cd9-1651d7683f80 │
+│ UN │ UP (10ms)  │ UP (4ms)  │ UP (5ms)  │ 10.0.66.115   │ 237h2m1s │ 4    │ 15.43GiB │ 4.1.0  │ 2.2.0    │ 918a52aa-cc42-43a4-a499-f7b1ccb53b18 │
+╰────┴────────────┴───────────┴───────────┴───────────────┴──────────┴──────┴──────────┴────────┴──────────┴──────────────────────────────────────╯
+</pre></div>
+</div>
+<p>Scylla Manager reads CQL IP address and port from the node configuration, and can automatically detect TLS/SSL connection.
+There are two types of CQL health check <a class="reference internal" href="#credentials-agnostic-health-check"><span class="std std-ref">Credentials agnostic health check</span></a> and <a class="reference internal" href="#cql-query-health-check"><span class="std std-ref">CQL query health check</span></a>.</p>
+</div>
+<div class="section" id="node-information">
+<h2>Node information<a class="headerlink" href="#node-information" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 2.2: </span>Scylla Manager</p>
+</div>
+<p>Node status check also provides additional columns that show properties of the available nodes. Those are:</p>
+<ul class="simple">
+<li><p>CPUs - Total OS CPU count</p></li>
+<li><p>Memory - Total OS memory available</p></li>
+<li><p>Uptime - How long the system has been running without restarts</p></li>
+<li><p>Scylla - Version of Scylla server running on the node</p></li>
+<li><p>Agent - Version Scylla Manger Agent running on the node</p></li>
+<li><p>Host - UUID of the node</p></li>
+<li><p>Address - IP address of the node</p></li>
+</ul>
+</div>
+<div class="section" id="scylla-monitoring">
+<h2>Scylla Monitoring<a class="headerlink" href="#scylla-monitoring" title="Permalink to this headline">¶</a></h2>
+<p>If you have enabled the Scylla Monitoring stack, Scylla Manager dashboard includes the same cluster status report.
+In addition, the Prometheus Alert Manager has an alert to report when a Scylla node health check fails.</p>
+</div>
+<div class="section" id="credentials-agnostic-health-check">
+<span id="id2"></span><h2>Credentials agnostic health check<a class="headerlink" href="#credentials-agnostic-health-check" title="Permalink to this headline">¶</a></h2>
+<p>Scylla Manager does not require database credentials to work.
+CQL health check is based on sending <a class="reference external" href="https://github.com/apache/cassandra/blob/trunk/doc/native_protocol_v4.spec#L302">CQL OPTIONS frame</a> and does not start a CQL session.
+This is simple and effective but does not test CQL all the way down.
+For that you may consider upgrading to :ref: &lt;cql-query-health-check&gt;`.</p>
+</div>
+<div class="section" id="cql-query-health-check">
+<span id="id3"></span><h2>CQL query health check<a class="headerlink" href="#cql-query-health-check" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 2.2: </span>Scylla Manager</p>
+</div>
+<p>You may specify CQL <code class="docutils literal notranslate"><span class="pre">username</span></code> and <code class="docutils literal notranslate"><span class="pre">password</span></code> flags when adding cluster to Scylla Manager using <a class="reference internal" href="sctool/cluster.html#cluster-add"><span class="std std-ref">sctool cluster add</span></a> command.
+It’s also possible to add or change that using <a class="reference internal" href="sctool/cluster.html#cluster-update"><span class="std std-ref">sctool cluster update</span></a> command.
+Once Scylla Manager has CQL credential to the cluster, when performing a health check, it would try to connect to each node and execute <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">now()</span> <span class="pre">FROM</span> <span class="pre">system.local</span></code> query.</p>
+</div>
+<div class="section" id="scylla-alternator-health-check">
+<span id="id4"></span><h2>Scylla Alternator Health Check<a class="headerlink" href="#scylla-alternator-health-check" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 2.2: </span>Scylla Manager</p>
+</div>
+<p>If Alternator is enabled it will check the Scylla Alternator API connectivity for all nodes in parallel. In Scylla 4.0 it uses simplified ping checking if the socket is open and if it’s responding. In Scylla 4.1+ it queries the system table.</p>
+<p>Please check the Scylla Manager <a class="reference internal" href="config/scylla-manager-config.html#configuration-file"><span class="std std-ref">Scylla Manager Config</span></a> to adjust timeouts for your cluster.</p>
+</div>
+<div class="section" id="scylla-rest-api-health-check">
+<span id="scylla-api"></span><h2>Scylla REST API Health Check<a class="headerlink" href="#scylla-rest-api-health-check" title="Permalink to this headline">¶</a></h2>
+<p>Checks Scylla REST API connectivity by performing single HTTP request-response cycle between Scylla Manager Server and all Scylla nodes in parallel.</p>
+<p>Please check the Scylla Manager <a class="reference internal" href="config/scylla-manager-config.html#configuration-file"><span class="std std-ref">Scylla Manager Config</span></a> to adjust timeouts for your cluster.</p>
+</div>
+</div>
+
+        </div>
+
+        <div id="sidebar" class="large-3 large-pull-6 columns"><div class="side-nav">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install-scylla-manager.html">Install Scylla Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-scylla-manager-agent.html">Install Scylla Manager Agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add-a-cluster.html">Add a Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backup/index.html">Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="restore/index.html">Restore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="repair/index.html">Repair</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Health Check</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sctool/index.html">CLI sctool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config/index.html">Configuration Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scylla-monitoring.html">Scylla Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="older-versions.html">Older Versions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://scylladb-users.slack.com/archives/C01ERVBPWLU">Slack</a></li>
+</ul>
+
+</div>
+        </div>
+
+        <div class="large-3 columns">
+            
+        </div>
+
+    </div>
+</section>
+
+<!-- newsleter modal -->
+
+<div id="newsletter_signup" class="reveal-modal tiny radius dark_modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <a class="close-reveal-modal" aria-label="Close">×</a>
+    <h2 id="modalTitle">Sign up for the Scylla newsletter</h2>
+    <div id="mc_embed_signup">
+        <form action="//cloudius-systems.us10.list-manage.com/subscribe/post?u=df8bb543c68230d5f7b4dcf78&amp;id=9a4589f144" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+            <div id="mc_embed_signup_scroll">
+
+                <div class="mc-field-group">
+                    <div class="row collapse">
+                        <div class="small-3 columns"><label for="mce-EMAIL">Email</label></div>
+                        <div class="small-9 columns"><input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL"></div>
+                    </div>
+                </div>
+                <div class="mc-field-group">
+                    <div class="row collapse">
+                        <div class="small-3 columns"><label for="mce-FNAME">First Name </label></div>
+                        <div class="small-9 columns"><input type="text" value="" name="FNAME" class="" id="mce-FNAME"></div>
+                    </div>
+                </div>
+                <div class="mc-field-group">
+                    <div class="row collapse">
+                        <div class="small-3 columns"><label for="mce-LNAME">Last Name </label></div>
+                        <div class="small-9 columns"><input type="text" value="" name="LNAME" class="" id="mce-LNAME"></div>
+                    </div>
+                </div>
+                <div id="mce-responses" class="clear">
+                    <div class="response" id="mce-error-response" style="display:none"></div>
+                    <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;"><input type="text" name="b_df8bb543c68230d5f7b4dcf78_9a4589f144" tabindex="-1" value=""></div>
+                <div class="clear"><input type="submit" class="button" value="Sign up" name="subscribe" id="mc-embedded-subscribe"></div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- end newsleter modal -->
+
+
+
+<!-- footer.html -->
+<footer id="footer">
+    <div class="footer-top">
+        <a class="logo" href="https://www.scylladb.com"><img src="_static/img/logo-scylla-horizontal-RGB.svg" alt=""></a>
+        <div class="footer-links">
+            <a class="link" href="https://docs.scylladb.com">Docs</a>
+            <a class="link" href="https://www.scylladb.com/company/contact-us/">Contact Us</a>
+            <a class="link" href="https://www.scylladb.com/company/">About Us</a>
+            <a class="link button" href="https://github.com/scylladb/scylla-manager-issues/issues/new?title=Issue in page Health Check&&body=I%20would%20like%20to%20report%20an%20issue%20in%20page%20https://scylladb.github.io/scylla-manager/branch-2.2/health-check%0A%0A%23%23%23%20Problem%0A%0A%23%23%23%20%20Suggest%20a%20fix" target="_blank">
+                Report an issue on this page</a>
+        </div>
+        <div class="footer-actions">
+            <a class="link-icon" href="https://github.com/ScyllaDB" target="_blank">
+                <span class="icon-github2"></span></a>
+            <a class="link-icon" href="https://twitter.com/ScyllaDB" target="_blank">
+                <span class="icon-twitter"></span></a>
+            <a class="link-icon" href="https://www.linkedin.com/company/scylladb"  target="_blank">
+                <span class="icon-linkedin2"></span></a>
+            <a class="link-icon" href="https://www.facebook.com/scylladb/" target="_blank">
+                <span class="icon-facebook"></span></a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="footer-info">
+            <div class="footer-copyright">
+                &#169; 2020, ScyllaDB. All rights reserved.
+            </div>
+            <div class="footer-last-updated">
+                Last updated on 14 December 2020.
+            </div>
+        </div>
+        <div class="footer-links">
+        </div>
+    </div>
+</footer>
+<!-- end footer.html -->
+
+<!-- bodyscripts.html -->
+<!-- at the end of the BODY --> 
+<script src="_static/js/vendor/jquery.js"></script>
+<script src="_static/js/vendor/jquery.cookie.min.js"></script>
+<script src="_static/expertrec.js"></script>
+<script src="_static/js/foundation/foundation.js"></script>
+<script src="_static/js/foundation/foundation.topbar.js"></script>
+<script src="_static/app.js"></script>
+<script>
+    $(document).foundation();
+</script>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T8P2JP"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <!-- end bodyscripts.html -->
+</body>
+</html>

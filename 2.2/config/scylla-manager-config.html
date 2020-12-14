@@ -1,0 +1,391 @@
+
+
+
+<!doctype html>
+<html class="no-js" lang="en">
+  
+<head><!-- begin head.html -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>
+    Scylla Manager Config | Scylla Docs
+    </title>
+    <meta name="description" content="Scylla is an Apache Cassandra-compatible NoSQL data store that can handle 1 million transactions per second on a single server."/>
+
+    <link rel="icon" href="../_static/img/favicon.ico" type="image/x-icon"/>
+    <link rel="canonical" href="https://docs.scylladb.com/">
+
+    <link rel="author" href="mailto:info@scylladb.com">
+    <link rel="stylesheet" href="../_static/" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_tabs/semantic-ui-2.4.1/segment.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_tabs/semantic-ui-2.4.1/menu.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_tabs/tabs.css" />
+    
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/doc/main.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+
+    <script src="../_static/js/vendor/modernizr.js"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T8P2JP');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Marketo -->
+    <script type="text/javascript"> (function() { var didInit = false; function initMunchkin() { if(didInit === false) { didInit = true; Munchkin.init('791-QBF-350'); } } var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//munchkin.marketo.net/munchkin.js'; s.onreadystatechange = function() { if (this.readyState == 'complete' || this.readyState == 'loaded') { initMunchkin(); } }; s.onload = initMunchkin; document.getElementsByTagName('head')[0].appendChild(s); })(); </script>
+    <!-- End Marketo -->
+
+<!-- end head.html -->
+</head>
+
+<body>
+
+
+    <section class="custom-promo-banner-wrap">
+    <div class="custom-promo-banner--relative">
+        <div class="custom-promo-banner--img-left">
+            <img src="../_static/img/Scylla-Summit-Banner-globs-left.svg">
+        </div>
+        <div class="custom-promo-banner--img-center">
+            <img src="../_static/img/Scylla-Summit-Banner-globs-middle.svg">
+        </div>
+        <div class="custom-promo-banner--img-right">
+            <img src="../_static/img/Scylla-Summit-Banner-globs-right.svg">
+        </div>
+
+        <div class="custom-promo-banner">
+            <img class="custom-promo-banner--logo" src="../_static/img/slide-summit21-logo@2x.png" alt="">
+            <div class="custom-promo-banner--title summit">Database Monsters of the World Connect! Virtual Conference | January 12-14</div>
+            <a class="custom-promo-banner--button summit" href="https://scylladb.com/scylla-summit-2021/">Register Now <i class="fa fa-angle-right" style="margin-left: 10px;" aria-hidden="true"></i></a><button class="custom-promo-banner--close">×</button>
+        </div>
+    </div>
+</section>
+
+
+
+<header id="header" class="animated">
+    <div class="topbar_continer contain-to-grid clearfix">
+        <nav class="top-bar" id="top-bar" data-topbar role="navigation">
+            <ul class="title-area">
+                <li class="name">
+                    <div class="logo">
+                        <a href="https://docs.scylladb.com/"><img src="../_static/img/logo-scylla-docs.svg" alt="" width="151"></a>
+                    </div>
+                </li>
+                <li class="toggle-topbar"><a href="#"><span class="icon-manu"></span></a></li>
+            </ul>
+            <section class="top-bar-section clearfix">
+                <ul class="right">
+                    
+                    <li>
+                        <a href="https://scylladb.github.io/scylla-manager/">Scylla Manager</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://scylladb.github.io/scylla-monitoring/">Scylla Monitor</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://docs.scylladb.com/scylla-cloud/">Scylla Cloud</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://university.scylladb.com/">Scylla University</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://www.scylladb.com/">ScyllaDB Home</a>
+                    </li>
+                    
+                    <li class="search_continer show-for-medium-up">	
+                        <ci-search></ci-search>	
+                    </li>	
+                </ul>
+            </section>
+        </nav>
+    </div>
+</header>
+<section id="content">
+    <div class="row">
+	
+	<div class="large-6 large-push-3 columns">
+
+        
+
+        <div class="section" id="scylla-manager-config">
+<span id="configuration-file"></span><h1>Scylla Manager Config<a class="headerlink" href="#scylla-manager-config" title="Permalink to this headline">¶</a></h1>
+<p>Scylla Manager configuration file <code class="docutils literal notranslate"><span class="pre">/etc/scylla-manager/scylla-manager.yaml</span></code>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scylla Manager config YAML</span>
+
+<span class="c1"># Bind REST API to the specified TCP address using HTTP protocol.</span>
+<span class="l l-Scalar l-Scalar-Plain">http</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">127.0.0.1:5080</span>
+
+<span class="c1"># Bind REST API to the specified TCP address using HTTPS protocol.</span>
+<span class="c1">#https: 127.0.0.1:5443</span>
+
+<span class="c1"># TLS certificate and key files to use with HTTPS. To regenerate the files use</span>
+<span class="c1"># scyllamgr_ssl_cert_gen script shipped with the Scylla Manager.</span>
+<span class="c1">#tls_cert_file: /var/lib/scylla-manager/scylla_manager.crt</span>
+<span class="c1">#tls_key_file: /var/lib/scylla-manager/scylla_manager.key</span>
+<span class="c1">#</span>
+<span class="c1"># CA to validate client certificates, if set client must present a certificate</span>
+<span class="c1"># signed by the CA.</span>
+<span class="c1">#tls_ca_file:</span>
+
+<span class="c1"># Bind prometheus API to the specified TCP address using HTTP protocol.</span>
+<span class="c1"># By default it binds to all network interfaces but you can restrict it</span>
+<span class="c1"># by specifying it like this 127:0.0.1:5090 or any other combination</span>
+<span class="c1"># of ip and port.</span>
+<span class="c1">#prometheus: &#39;:5090&#39;</span>
+
+<span class="c1"># Debug server that allows to run pporf profiling on demand on a live system.</span>
+<span class="c1">#debug: 127.0.0.1:5112</span>
+
+<span class="c1"># Logging configuration.</span>
+<span class="c1">#logger:</span>
+<span class="c1"># Available log levels are error, info and debug.</span>
+<span class="c1">#  level: info</span>
+
+<span class="c1"># Scylla Manager database, used to store management data.</span>
+<span class="c1">#database:</span>
+<span class="c1">#  hosts:</span>
+<span class="c1">#    - 127.0.0.1</span>
+<span class="c1">#</span>
+<span class="c1"># Enable or disable client/server encryption.</span>
+<span class="c1">#  ssl: false</span>
+<span class="c1">#</span>
+<span class="c1"># Database credentials.</span>
+<span class="c1">#  user: user</span>
+<span class="c1">#  password: password</span>
+<span class="c1">#</span>
+<span class="c1"># Local datacenter name, specify if using a remote, multi-dc cluster.</span>
+<span class="c1">#  local_dc:</span>
+<span class="c1">#</span>
+<span class="c1"># Keyspace for management data.</span>
+<span class="c1">#  keyspace: scylla_manager</span>
+<span class="c1">#  replication_factor: 1</span>
+<span class="c1">#</span>
+<span class="c1"># Database connection timeout.</span>
+<span class="c1">#  timeout: 600ms</span>
+<span class="c1">#</span>
+<span class="c1"># Should we use a token aware driver, this would make manager access appropriate</span>
+<span class="c1"># host and shard to execute a request eliminating request routing.</span>
+<span class="c1">#  token_aware: true</span>
+
+<span class="c1"># Optional custom client/server encryption options.</span>
+<span class="c1">#ssl:</span>
+<span class="c1"># CA certificate used to validate server cert. If not set will use he host&#39;s root CA set.</span>
+<span class="c1">#  cert_file:</span>
+<span class="c1">#</span>
+<span class="c1"># Verify the hostname and server cert.</span>
+<span class="c1">#  validate: true</span>
+<span class="c1">#</span>
+<span class="c1"># Client certificate and key in PEM format. It has to be provided when</span>
+<span class="c1"># client_encryption_options.require_client_auth=true is set on server.</span>
+<span class="c1">#  user_cert_file:</span>
+<span class="c1">#  user_key_file</span>
+
+<span class="c1"># Healthcheck service configuration.</span>
+<span class="c1">#healthcheck:</span>
+<span class="c1"># Timeout for CQL status checks.</span>
+<span class="c1">#  timeout: 250ms</span>
+<span class="c1">#  ssl_timeout: 750ms</span>
+<span class="c1">#</span>
+<span class="c1"># Dynamic timeout calculates timeout based on past measurements.</span>
+<span class="c1"># It takes recent RTTs, calculates mean (m), standard deviation (stddev),</span>
+<span class="c1"># and returns timeout of next probe equal to m + stddev_multiplier * max(stddev, 1ms).</span>
+<span class="c1">#</span>
+<span class="c1"># Higher stddev_multiplier is recommended on stable network environments,</span>
+<span class="c1"># because standard deviation may be close to 0.</span>
+<span class="c1">#  dynamic_timeout:</span>
+<span class="c1">#    enabled: true</span>
+<span class="c1">#    probes: 200</span>
+<span class="c1">#    max_timeout: 30s</span>
+<span class="c1">#    stddev_multiplier: 5</span>
+<span class="c1">#</span>
+<span class="c1"># Backup service configuration.</span>
+<span class="c1">#backup:</span>
+<span class="c1"># Minimal amount of free disk space required to take a snapshot.</span>
+<span class="c1">#  disk_space_free_min_percent: 10</span>
+<span class="c1">#</span>
+<span class="c1"># Maximal time for backup run to be considered fresh and can be continued from</span>
+<span class="c1"># the same snapshot. If exceeded, new run with new snapshot will be created.</span>
+<span class="c1"># Zero means no limit.</span>
+<span class="c1">#  age_max: 12h</span>
+
+<span class="c1"># Repair service configuration.</span>
+<span class="c1">#repair:</span>
+<span class="c1"># Frequency Scylla Manager poll Scylla node for repair command status.</span>
+<span class="c1">#  poll_interval: 50ms</span>
+<span class="c1">#</span>
+<span class="c1"># Maximal time a paused repair is considered fresh and can be continued,</span>
+<span class="c1"># if exceeded repair will start from the beginning. Zero means no limit.</span>
+<span class="c1">#  age_max: 0</span>
+<span class="c1">#</span>
+<span class="c1"># Specifies how long repair will wait until all ongoing repair requests finish</span>
+<span class="c1"># when repair task is stopped. After this time, task will be interrupted.</span>
+<span class="c1">#  graceful_stop_timeout: 30s</span>
+<span class="c1">#</span>
+<span class="c1"># Force usage of certain type of repair algorithm. Allowed values are row_level, legacy, and auto.</span>
+<span class="c1"># row_level means that Scylla Manager will use row level repair optimised algorithm.</span>
+<span class="c1"># legacy means that Scylla Manager will be splitting ranges to shards when making repair requests.</span>
+<span class="c1"># Default value is auto which means that repair type will be auto detected based on Scylla versions in the managed cluster.</span>
+<span class="c1">#  force_repair_type: auto</span>
+<span class="c1">#</span>
+<span class="c1"># Distribution of data among cores (shards) within a node.</span>
+<span class="c1"># Copy value from Scylla configuration file.</span>
+<span class="c1">#  murmur3_partitioner_ignore_msb_bits: 12</span>
+</pre></div>
+</div>
+</div>
+
+        </div>
+
+        <div id="sidebar" class="large-3 large-pull-6 columns"><div class="side-nav">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install-scylla-manager.html">Install Scylla Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install-scylla-manager-agent.html">Install Scylla Manager Agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../add-a-cluster.html">Add a Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backup/index.html">Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../restore/index.html">Restore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../repair/index.html">Repair</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../health-check.html">Health Check</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sctool/index.html">CLI sctool</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Configuration Files</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Scylla Manager Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scylla-manager-agent-config.html">Scylla Manager Agent Config</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scylla-monitoring.html">Scylla Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../older-versions.html">Older Versions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://scylladb-users.slack.com/archives/C01ERVBPWLU">Slack</a></li>
+</ul>
+
+</div>
+        </div>
+
+        <div class="large-3 columns">
+            
+        </div>
+
+    </div>
+</section>
+
+<!-- newsleter modal -->
+
+<div id="newsletter_signup" class="reveal-modal tiny radius dark_modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <a class="close-reveal-modal" aria-label="Close">×</a>
+    <h2 id="modalTitle">Sign up for the Scylla newsletter</h2>
+    <div id="mc_embed_signup">
+        <form action="//cloudius-systems.us10.list-manage.com/subscribe/post?u=df8bb543c68230d5f7b4dcf78&amp;id=9a4589f144" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+            <div id="mc_embed_signup_scroll">
+
+                <div class="mc-field-group">
+                    <div class="row collapse">
+                        <div class="small-3 columns"><label for="mce-EMAIL">Email</label></div>
+                        <div class="small-9 columns"><input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL"></div>
+                    </div>
+                </div>
+                <div class="mc-field-group">
+                    <div class="row collapse">
+                        <div class="small-3 columns"><label for="mce-FNAME">First Name </label></div>
+                        <div class="small-9 columns"><input type="text" value="" name="FNAME" class="" id="mce-FNAME"></div>
+                    </div>
+                </div>
+                <div class="mc-field-group">
+                    <div class="row collapse">
+                        <div class="small-3 columns"><label for="mce-LNAME">Last Name </label></div>
+                        <div class="small-9 columns"><input type="text" value="" name="LNAME" class="" id="mce-LNAME"></div>
+                    </div>
+                </div>
+                <div id="mce-responses" class="clear">
+                    <div class="response" id="mce-error-response" style="display:none"></div>
+                    <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;"><input type="text" name="b_df8bb543c68230d5f7b4dcf78_9a4589f144" tabindex="-1" value=""></div>
+                <div class="clear"><input type="submit" class="button" value="Sign up" name="subscribe" id="mc-embedded-subscribe"></div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- end newsleter modal -->
+
+
+
+<!-- footer.html -->
+<footer id="footer">
+    <div class="footer-top">
+        <a class="logo" href="https://www.scylladb.com"><img src="../_static/img/logo-scylla-horizontal-RGB.svg" alt=""></a>
+        <div class="footer-links">
+            <a class="link" href="https://docs.scylladb.com">Docs</a>
+            <a class="link" href="https://www.scylladb.com/company/contact-us/">Contact Us</a>
+            <a class="link" href="https://www.scylladb.com/company/">About Us</a>
+            <a class="link button" href="https://github.com/scylladb/scylla-manager-issues/issues/new?title=Issue in page Scylla Manager Config&&body=I%20would%20like%20to%20report%20an%20issue%20in%20page%20https://scylladb.github.io/scylla-manager/branch-2.2/config/scylla-manager-config%0A%0A%23%23%23%20Problem%0A%0A%23%23%23%20%20Suggest%20a%20fix" target="_blank">
+                Report an issue on this page</a>
+        </div>
+        <div class="footer-actions">
+            <a class="link-icon" href="https://github.com/ScyllaDB" target="_blank">
+                <span class="icon-github2"></span></a>
+            <a class="link-icon" href="https://twitter.com/ScyllaDB" target="_blank">
+                <span class="icon-twitter"></span></a>
+            <a class="link-icon" href="https://www.linkedin.com/company/scylladb"  target="_blank">
+                <span class="icon-linkedin2"></span></a>
+            <a class="link-icon" href="https://www.facebook.com/scylladb/" target="_blank">
+                <span class="icon-facebook"></span></a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="footer-info">
+            <div class="footer-copyright">
+                &#169; 2020, ScyllaDB. All rights reserved.
+            </div>
+            <div class="footer-last-updated">
+                Last updated on 14 December 2020.
+            </div>
+        </div>
+        <div class="footer-links">
+        </div>
+    </div>
+</footer>
+<!-- end footer.html -->
+
+<!-- bodyscripts.html -->
+<!-- at the end of the BODY --> 
+<script src="../_static/js/vendor/jquery.js"></script>
+<script src="../_static/js/vendor/jquery.cookie.min.js"></script>
+<script src="../_static/expertrec.js"></script>
+<script src="../_static/js/foundation/foundation.js"></script>
+<script src="../_static/js/foundation/foundation.topbar.js"></script>
+<script src="../_static/app.js"></script>
+<script>
+    $(document).foundation();
+</script>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T8P2JP"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <!-- end bodyscripts.html -->
+</body>
+</html>
